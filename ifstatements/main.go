@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	hungry:= true
-	if hungry==true{
-		fmt.Println("eat")
+	for i:=0; i<1000000; i++ {
+		if i%42==1 {
+			fmt.Println(i)
+		}
 	}
 }
-
