@@ -2,4 +2,9 @@ package main
 
 import "fmt"
 
-const name fmt.Scan("Name:")
+func main () {
+	var name string
+	fmt.Print("What's your name: ")
+	fmt.Scan(&name)
+	fmt.Println("Hello,", name)
+}
