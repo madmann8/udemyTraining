@@ -20,5 +20,5 @@ func greatest(n...int)int {
 }
 
 func main () {
-	fmt.Println(greatest(1,2,3,4,5))
+	fmt.Println(grettest(1,2,3,4,5))
 }
