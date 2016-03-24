@@ -10,4 +10,5 @@ func main() {
 	myGreeting[3] = "hola"
 	fmt.Println("test")
 	fmt.Println(myGreeting)
+	delete(myGreeting,2)
 }
