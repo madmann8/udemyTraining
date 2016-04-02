@@ -10,15 +10,12 @@ var currency = map[string]float64 {
 }
 
 func main () {
-	fmt.Println(conversion(toconvert,number))
+	conversion("Bitcoin",5000)
 }
 
 
-func conversion (input string, number float64) float64 {
-	for k:= range currency {
-		if currency[input] != currency[k] {
-			return 0
-		}
+func conversion (input string, number float64)  {
+	if currency[input] == currency[input] {
+		fmt.Println(currency[input] * number, "American Dollars is equvialant to", number, input,"s.")
 	}
-	return currency[input]*number
 }
