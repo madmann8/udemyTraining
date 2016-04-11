@@ -13,7 +13,7 @@ func main() {
 func incrementor() chan int {
 	out := make(chan int)
 	go func() {
-		for i := 0; i < 100000000; i++ {
+		for i := 0; i < 10000000000; i++ {
 			out <- i
 		}
 		close(out)
