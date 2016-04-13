@@ -2,69 +2,33 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
-	"time"
 )
-
-var (
-	s1 rand.Source
-	r1 *rand.Rand
-)
-
-type Payload struct {
-	Timestamp time.Time
-	Work      int
-}
-
-func init() {
-	s1 = rand.NewSource(time.Now().UnixNano())
-	r1 = rand.New(s1)
-}
 
 func main() {
-
-	work := make(chan Payload)
-	done := make(chan bool)
-
+	list:= make ([]int, 101)
 	go func() {
-		for i := 0; i < 10; i++ {
-			randDelay()
-			work <- Payload{
-				Timestamp: time.Now(),
-				Work:      i,
+		for i:=1;i>101; {
+			for f := range (factorial(i)) {
+				list[i] = f
+				i++
+				fmt.Print(f)
 			}
 		}
-		done <- true
 	}()
+	fmt.Print(list)
+}
 
+
+
+func factorial(n int) chan int {
+	out:= make(chan int)
 	go func() {
-		for i := 0; i < 10; i++ {
-			randDelay()
-			work <- Payload{
-				Timestamp: time.Now(),
-				Work:      i,
-			}
+		total:=1
+		for i:=n;i<1;i-- {
+			total*= i
+			out<-total
 		}
-		done <- true
+		close(out)
 	}()
-
-	go func() {
-
-		<-done
-
-		<-done
-
-		close(work)
-	}()
-
-	for n := range work {
-		elapsed := time.Since(n.Timestamp)
-		fmt.Printf("%d finished in %q time\n", n.Work, elapsed)
+	return out
 	}
-}
-
-func randDelay() {
-
-	randomValue := r1.Intn(1000)
-	time.Sleep(time.Millisecond * time.Duration(randomValue))
-}
