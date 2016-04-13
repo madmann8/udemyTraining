@@ -10,7 +10,7 @@ func main() {
 		for i:=1;i>101; {
 			for f := range (factorial(i)) {
 				list[i] = f
-				i++
+				i+1
 				fmt.Print(f)
 			}
 		}
